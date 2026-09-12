@@ -18,12 +18,15 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
-  // The single featured post (falls back to the newest post if none is flagged).
+  // The single featured post, wrapped in an array (Eleventy requires every
+  // custom collection to return an array, even a one-item one). Falls back
+  // to the newest post if none is flagged featured.
   eleventyConfig.addCollection("featuredPost", function (collectionApi) {
     const all = collectionApi
       .getFilteredByTag("post")
       .sort((a, b) => b.date - a.date);
-    return all.find((post) => post.data.featured) || all[0];
+    const featured = all.find((post) => post.data.featured) || all[0];
+    return featured ? [featured] : [];
   });
 
   // Simple date formatter usable in templates: {{ post.date | readableDate }}
