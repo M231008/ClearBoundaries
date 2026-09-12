@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title }}, Clear Boundaries</title>
+<meta name="description" content="{{ excerpt }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+{% include "styles.njk" %}
+</head>
+<body>
+{% include "header.njk" %}
+
+<section class="post-hero">
+  <div class="wrap">
+    <a class="read-link post-back" href="/blog/">← Back to all insights</a>
+    <span class="tag">{{ tag }}</span>
+    <h1>{{ title }}</h1>
+    <div class="post-meta">{{ date | readableDate }}</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap">
+    <div class="post-body-inner">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>
+
+{% include "footer.njk" %}
+</body>
+</html>
