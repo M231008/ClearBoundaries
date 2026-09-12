@@ -1,0 +1,100 @@
+---
+title: Clear Boundaries Insights
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clear Boundaries Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+{% include "styles.njk" %}
+</head>
+<body>
+{% include "header.njk" %}
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Clear Boundaries Insights</span>
+      <h1>Practical thinking for <em>safer workplaces</em></h1>
+      <p class="lede">Guidance on psychosocial risk, workplace investigations, regulatory expectations and the practical steps organisations can take before issues become harm.</p>
+    </div>
+    <div class="hero-note">Clear explanations. Practical application. Insight shaped by frontline and regulatory experience.</div>
+  </div>
+</section>
+
+{% set featured = collections.featuredPost %}
+{% if featured %}
+<section class="featured">
+  <div class="wrap">
+    <article class="feature-card">
+      <div class="feature-art" aria-hidden="true"></div>
+      <div class="feature-copy">
+        <span class="tag">Featured · {{ featured.data.tag }}</span>
+        <h2>{{ featured.data.title }}</h2>
+        <p>{{ featured.data.excerpt }}</p>
+        <a class="read-link" href="{{ featured.url }}">Read article →</a>
+      </div>
+    </article>
+  </div>
+</section>
+{% endif %}
+
+<section class="insights">
+  <div class="wrap">
+    <div class="insights-head">
+      <div><span class="eyebrow">Latest insights</span><h2>From regulation to real-world practice</h2></div>
+      <p>Use this page for articles, regulatory updates, practical guides and commentary from Clear Boundaries.</p>
+    </div>
+
+    <div class="filters">
+      <span class="filter active" data-filter="all">All insights</span>
+      <span class="filter" data-filter="Regulatory updates">Regulatory updates</span>
+      <span class="filter" data-filter="Employer duties">Employer duties</span>
+      <span class="filter" data-filter="Consultation & training">Consultation & training</span>
+    </div>
+
+    <div class="grid">
+      {% for post in collections.posts %}
+      <article class="card" data-tag="{{ post.data.tag }}">
+        <div class="card-art {{ post.data.cardArt or 'one' }}"></div>
+        <div class="card-body">
+          <span class="tag">{{ post.data.tag }}</span>
+          <h3>{{ post.data.title }}</h3>
+          <p>{{ post.data.excerpt }}</p>
+          <a class="read-link" href="{{ post.url }}">Read article →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap">
+    <div class="news-card">
+      <div><span class="eyebrow">Stay informed</span><h2>Useful insight, without the noise.</h2><p>A future email sign-up can sit here for regulatory updates, new articles and practical psychosocial safety guidance.</p></div>
+      <div class="news-actions"><input type="email" placeholder="Email address" aria-label="Email address"><button type="button">Subscribe</button></div>
+    </div>
+  </div>
+</section>
+
+{% include "footer.njk" %}
+
+<script>
+document.querySelectorAll('.filter').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.filter').forEach(function (f) { f.classList.remove('active'); });
+    btn.classList.add('active');
+    var filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.card').forEach(function (card) {
+      var show = filter === 'all' || card.getAttribute('data-tag') === filter;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
