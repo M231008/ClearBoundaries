@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Netlify Identity + Git Gateway need to be turned on for this site in the
+# Netlify dashboard before this admin panel will let anyone log in.
+# See the README for the exact steps.
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "src/blog/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Category"
+        name: "tag"
+        widget: "select"
+        options:
+          - "Regulatory updates"
+          - "Employer duties"
+          - "Consultation & training"
+      - label: "Card colour"
+        name: "cardArt"
+        widget: "select"
+        hint: "Just the background colour used on the blog listing card, purely visual."
+        options: ["one", "two", "three", "four", "five", "six"]
+        default: "one"
+      - label: "Show as featured post"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Only one post should be featured at a time. Turning this on for a new post will make it the new featured article on the blog homepage."
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Shown on the blog listing card, 1–2 sentences." }
+      - { label: "Body", name: "body", widget: "markdown" }
