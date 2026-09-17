@@ -1,10 +1,11 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: M231008/ClearBoundaries
   branch: main
 
-# Netlify Identity + Git Gateway need to be turned on for this site in the
-# Netlify dashboard before this admin panel will let anyone log in.
-# See the README for the exact steps.
+# Editors log in with a GitHub account (added as a Collaborator on this repo).
+# GitHub OAuth App credentials are registered in Netlify under
+# Site configuration → Access control → OAuth.
 
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
