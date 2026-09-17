@@ -5,7 +5,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/psychosocial-training.html");
   eleventyConfig.addPassthroughCopy("src/workplace-investigations.html");
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
-
+  eleventyConfig.addPassthroughCopy("src/contact.html");
+    
   // Decap CMS admin panel — copied straight through to /admin on the built site.
   eleventyConfig.addPassthroughCopy({ admin: "admin" });
 
