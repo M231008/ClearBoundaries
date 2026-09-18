@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/contact.html");
     
   // Decap CMS admin panel — copied straight through to /admin on the built site.
-  eleventyConfig.addPassthroughCopy({ admin: "admin" });
+  eleventyConfig.addPassthroughCopy("src/thank-you.html");
 
   // All blog posts (files in src/blog/posts/ tagged "post" via posts.json),
   // sorted newest first, EXCLUDING whichever one is flagged featured: true.
