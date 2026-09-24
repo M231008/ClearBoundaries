@@ -71,9 +71,28 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;bac
 .upsell .read-link{color:#ead9b6}
 .receipt{margin-top:46px;font-size:.84rem;color:var(--sage);font-style:italic}
 @media(max-width:900px){.step-list li{grid-template-columns:44px 1fr;gap:14px}}
+
+/* ===== Mobile navigation ===== */
+.navtoggle{display:none;background:none;border:1px solid rgba(212,195,157,.7);padding:11px 10px;cursor:pointer;flex-direction:column;gap:5px;border-radius:2px;flex-shrink:0}
+.navtoggle span{display:block;width:24px;height:2px;background:#f0e9d8;transition:.25s}
+.navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){
+.navtoggle{display:flex}
+.navlinks{position:absolute;top:100%;left:0;right:0;z-index:60;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 20px;background:linear-gradient(160deg,#182f31 0%,#2c4644 60%,#4e5a4c 100%);border-top:1px solid rgba(212,195,157,.45);box-shadow:0 26px 50px rgba(18,35,35,.4);display:none}
+.navlinks.open{display:flex}
+.navlinks a:not(.btn){display:block!important;padding:15px 26px;font-size:1rem;border-bottom:1px solid rgba(212,195,157,.16)}
+.has-dropdown{position:static}
+.has-dropdown .dropdown-toggle{padding:15px 26px;border-bottom:1px solid rgba(212,195,157,.16)}
+.dropdown{position:static;transform:none!important;opacity:1;visibility:visible;pointer-events:auto;min-width:0;background:rgba(0,0,0,.2);border:0;box-shadow:none;padding:0}
+.dropdown a{padding:13px 26px 13px 46px;font-size:.92rem;border-bottom:1px solid rgba(212,195,157,.12)}
+.navlinks .btn{margin:18px 26px 0;width:calc(100% - 52px)}
+.header-photo{display:none}
+}
 </style></head>
 <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRV8QPMX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<header><div class="wrap nav"><a href="index.html"><img class="logo" src="images/clear-boundaries-logo.webp" alt="Clear Boundaries, Psychosocial Investigations & Consultancy"></a><nav class="navlinks"><div class="has-dropdown"><a href="index.html#services" class="dropdown-toggle">Services</a><div class="dropdown"><a href="psychosocial-consultancy.html" class="">Psychosocial Consultancy</a><a href="psychosocial-training.html" class="">Psychosocial Training</a><a href="workplace-investigations.html" class="">Workplace Investigations</a></div></div><a href="index.html#founders">About</a><a href="index.html#situations">Who we work with</a><a href="/blog/">Blog</a><a href="/resources">Resources</a><a href="/contact.html">Contact</a><a class="btn btn-dark" href="https://outlook.office.com/bookwithme/user/36d271772be24963bdc01629c08f3af9@clearboundaries.com.au/meetingtype/98Tx2YGMK0-DJCE742lWhA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mCardFromTile" target="_blank" rel="noopener">Book a free consult</a><img class="header-photo" src="images/founders-photo.png" alt="Abbie Janssen and Charlie Cole, co-founders of Clear Boundaries"></nav></div></header>
+<header><div class="wrap nav"><a href="index.html"><img class="logo" src="images/clear-boundaries-logo.webp" alt="Clear Boundaries, Psychosocial Investigations & Consultancy"></a><nav class="navlinks" id="navlinks"><div class="has-dropdown"><a href="index.html#services" class="dropdown-toggle">Services</a><div class="dropdown"><a href="psychosocial-consultancy.html" class="">Psychosocial Consultancy</a><a href="psychosocial-training.html" class="">Psychosocial Training</a><a href="workplace-investigations.html" class="">Workplace Investigations</a></div></div><a href="index.html#founders">About</a><a href="index.html#situations">Who we work with</a><a href="/blog/">Blog</a><a href="/resources.html">Resources</a><a href="/contact.html">Contact</a><a class="btn btn-dark" href="https://outlook.office.com/bookwithme/user/36d271772be24963bdc01629c08f3af9@clearboundaries.com.au/meetingtype/98Tx2YGMK0-DJCE742lWhA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mCardFromTile" target="_blank" rel="noopener">Book a free consult</a><img class="header-photo" src="images/founders-photo.png" alt="Abbie Janssen and Charlie Cole, co-founders of Clear Boundaries"></nav><button class="navtoggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button></div></header>
 
 <section class="ty-hero"><div class="wrap">
 <span class="eyebrow">Purchase complete</span>
@@ -103,4 +122,14 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;bac
 </div></section>
 
 <footer><div class="wrap footer-row"><span>© Clear Boundaries. All rights reserved.</span><span>Psychosocial safety consulting, investigations & training · Australia-wide</span></div></footer>
+<script>
+(function(){
+  var t=document.querySelector(".navtoggle"),n=document.getElementById("navlinks");
+  if(!t||!n)return;
+  function set(open){n.classList.toggle("open",open);t.setAttribute("aria-expanded",open?"true":"false");t.setAttribute("aria-label",open?"Close menu":"Open menu");}
+  t.addEventListener("click",function(){set(!n.classList.contains("open"));});
+  n.addEventListener("click",function(e){if(e.target.closest("a"))set(false);});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false);});
+})();
+</script>
 </body></html>
